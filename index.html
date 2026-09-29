@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Instrument+Sans:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#dfe1de;--ink:#20252b;--mute:#5d666e;--line:#b7bcb9;--acc:#2a45e0;--tile:#cdd1ce;
+--head:"Archivo","Arial Narrow",Arial,sans-serif;--body:"Instrument Sans",system-ui,sans-serif;
+box-sizing:border-box;padding:env(safe-area-inset-top,0) 0 env(safe-area-inset-bottom,0)}
+@media(prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#181c20;--ink:#e6e8e5;--mute:#98a1a8;--line:#333a40;--acc:#8095ff;--tile:#22282d}}
+*{box-sizing:border-box}
+html{scroll-padding-top:env(safe-area-inset-top,0)}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 1rem/1.6 var(--body)}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--acc);outline-offset:3px}
+.w{max-width:1180px;margin:0 auto;padding:0 clamp(1rem,4vw,3rem)}
+header.top{padding:clamp(2.5rem,9vw,7rem) 0 2.5rem}
+.name{font:800 clamp(3.4rem,15vw,12rem)/.86 var(--head);font-stretch:125%;letter-spacing:-.03em;margin:0;overflow-wrap:anywhere}
+.role{font:600 1.05rem var(--body);margin:1.4rem 0 .4rem}
+.bio{max-width:52ch;color:var(--mute);margin:0}
+.filters{display:flex;flex-wrap:wrap;gap:.5rem;margin:2.5rem 0 1rem}
+.filters button{font:600 .9rem var(--body);background:none;color:var(--ink);border:1px solid var(--line);border-radius:99px;padding:.35rem .9rem;cursor:pointer}
+.filters button[aria-pressed=true]{background:var(--acc);border-color:var(--acc);color:#fff}
+.row{display:grid;grid-template-columns:4rem 1fr 7.5rem;gap:1rem;align-items:center;padding:1.1rem 0;border-top:1px solid var(--line);text-decoration:none}
+.row:last-child{border-bottom:1px solid var(--line)}
+.row .yr{color:var(--mute);font-variant-numeric:tabular-nums}
+.row h2{font:700 clamp(1.6rem,4.6vw,3.4rem)/1 var(--head);font-stretch:112%;margin:0;letter-spacing:-.02em;transition:color .15s}
+.row p{margin:.35rem 0 0;color:var(--mute);max-width:60ch}
+.row:hover h2,.row:focus-visible h2{color:var(--acc)}
+.thumb{width:7.5rem;aspect-ratio:4/3;object-fit:cover;background:var(--tile);border-radius:2px;transition:transform .2s}
+.row:hover .thumb{transform:scale(1.06)}
+.ph{display:grid;place-items:center;font:800 2.4rem var(--head);color:var(--line)}
+.back{display:inline-block;margin:2rem 0 1.5rem;color:var(--mute)}
+.d h1{font:800 clamp(2.6rem,10vw,7rem)/.92 var(--head);font-stretch:120%;letter-spacing:-.03em;margin:0 0 1rem}
+.meta{display:flex;flex-wrap:wrap;gap:.4rem 1.4rem;color:var(--mute);margin:0 0 2rem}
+.hero{width:100%;max-height:78vh;object-fit:cover;background:var(--tile);display:block}
+.text{max-width:62ch;margin:2.5rem 0}
+.text p{margin:0 0 1.1em}
+.lead{font:600 1.3rem/1.4 var(--body)}
+.gal{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:1rem;margin-bottom:3rem}
+.gal img{width:100%;display:block;background:var(--tile)}
+footer{padding:3rem 0 4rem;margin-top:3rem;border-top:1px solid var(--line);display:flex;flex-wrap:wrap;gap:.5rem 1.5rem;color:var(--mute)}
+@media(max-width:560px){.row{grid-template-columns:1fr 5.5rem}.row .yr{display:none}.thumb{width:5.5rem}}
+</style>
+</head>
+<body>
+<div class="w" id="app"><p style="padding:3rem 0">Loading…</p></div>
+<script>
+const $=s=>document.querySelector(s);
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const safe=u=>/^(https?:|mailto:)/.test(u)?u:'#';
+let D,filter='All';
+fetch('content.json?v='+Date.now()).then(r=>r.json()).then(d=>{D=d;document.title=d.site.name+' | '+d.site.title;route()})
+ .catch(()=>{$('#app').innerHTML='<p style="padding:3rem 0">Could not load content.json.</p>'});
+addEventListener('hashchange',route);
+const paras=t=>String(t||'').split(/\n\s*\n/).filter(Boolean).map(p=>`<p>${esc(p)}</p>`).join('');
+const pic=(p,c)=>p.cover?`<img class="${c}" src="${esc(p.cover)}" alt="" loading="lazy">`:`<div class="${c} ph" aria-hidden="true">${esc((p.title||'?')[0])}</div>`;
+function foot(){const s=D.site;const l=[...(s.email?[{label:s.email,url:'mailto:'+s.email}]:[]),...s.links.filter(x=>x.url)];
+ return `<footer>${l.map(x=>`<a href="${esc(safe(x.url))}" rel="noopener">${esc(x.label)}</a>`).join('')}<span>${esc(s.name)}</span></footer>`}
+function route(){const p=D.projects.find(x=>x.id===location.hash.slice(2));p?detail(p):home();scrollTo(0,0)}
+function home(){const s=D.site,cats=['All',...new Set(D.projects.map(p=>p.category).filter(Boolean))];
+ const list=D.projects.filter(p=>filter=='All'||p.category==filter);
+ $('#app').innerHTML=`<header class="top"><h1 class="name">${esc(s.name)}</h1><p class="role">${esc(s.title)}</p><p class="bio">${esc(s.bio)}</p></header>
+ <div class="filters" role="group" aria-label="Filter projects">${cats.length>2?cats.map(c=>`<button aria-pressed="${c==filter}" data-c="${esc(c)}">${esc(c)}</button>`).join(''):''}</div>
+ <main>${list.map(p=>`<a class="row" href="#/${esc(p.id)}"><span class="yr">${esc(p.year)}</span><div><h2>${esc(p.title)}</h2><p>${esc(p.summary)}</p></div>${pic(p,'thumb')}</a>`).join('')}</main>${foot()}`;
+ document.querySelectorAll('.filters button').forEach(b=>b.onclick=()=>{filter=b.dataset.c;home()})}
+function detail(p){
+ $('#app').innerHTML=`<a class="back" href="#/">Back to projects</a><article class="d"><h1>${esc(p.title)}</h1>
+ <p class="meta"><span>${esc(p.year)}</span><span>${esc(p.category)}</span><span>${(p.tags||[]).map(esc).join(', ')}</span></p>
+ ${p.cover?`<img class="hero" src="${esc(p.cover)}" alt="${esc(p.title)}">`:''}
+ <div class="text">${p.summary?`<p class="lead">${esc(p.summary)}</p>`:''}${paras(p.body)}</div>
+ <div class="gal">${(p.images||[]).map(u=>`<img src="${esc(u)}" alt="" loading="lazy">`).join('')}</div></article>${foot()}`}
+</script>
+</body>
+</html>

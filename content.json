@@ -1,0 +1,19 @@
+{
+  "site": {
+    "name": "Dawson",
+    "title": "Industrial designer",
+    "bio": "Industrial designer in Aotearoa New Zealand. Bachelor of Design Innovation, Victoria University of Wellington. I design modular, repairable objects that do one job well.",
+    "email": "",
+    "links": [
+      { "label": "Behance", "url": "" },
+      { "label": "LinkedIn", "url": "" }
+    ]
+  },
+  "projects": [
+    { "id": "collect-connect-configure", "title": "Collect Connect Configure", "year": "2026", "category": "Research", "summary": "A 3D-printed modular joint system for student and renter furniture.", "tags": ["Modular", "3D printing", "Furniture"], "cover": "", "body": "Write the story here.\n\nBlank lines start a new paragraph.", "images": [] },
+    { "id": "oculus", "title": "Oculus", "year": "2026", "category": "Product", "summary": "Add a one-line summary.", "tags": [], "cover": "", "body": "", "images": [] },
+    { "id": "eye-see-you", "title": "Eye See You", "year": "2026", "category": "Product", "summary": "Add a one-line summary.", "tags": [], "cover": "", "body": "", "images": [] },
+    { "id": "forma", "title": "Forma", "year": "2025", "category": "Product", "summary": "Add a one-line summary.", "tags": [], "cover": "", "body": "", "images": [] },
+    { "id": "nook", "title": "Nook", "year": "2025", "category": "Product", "summary": "Add a one-line summary.", "tags": [], "cover": "", "body": "", "images": [] }
+  ]
+}
