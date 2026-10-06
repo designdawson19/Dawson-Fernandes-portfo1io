@@ -44,7 +44,7 @@
         "Fusion 360",
         "3D Print"
       ],
-      "cover": "",
+      "cover": "images/1791273635443-annotated-group-pdf-export-203-copy-page1.jpg",
       "body": "Oculus explores how the biomechanics of the human eye can inform product design. Studying the opening and closing motion of the eyelid, I developed a retracting mechanism that functions as an extension of the hand — allowing users to retrieve small objects from a distance and enclose them securely, with older users specifically in mind.\n\nThe precedent work started with analysing eyelid anatomy to locate the pivot points controlling its movement, then building a crude model, aluminium wire threaded through thin plastic sheet, to test the mechanism physically before moving to CAD.\n\nVersion 1 introduced an elastic band system to recreate the eyelid's retraction, but the band placement obstructed the collection opening. Version 2 repositioned the bands to three attachment points along the sides, improving smoothness while keeping the opening clear.\n\nThe final iteration added a long stem, inspired by the tendons around the eye, with a nylon wire running through to a finger ring, extending reach for one-handed use. Testing showed the original single ring was hard to control, so two additional finger rings were added for grip and stability.\n",
       "images": []
     },
