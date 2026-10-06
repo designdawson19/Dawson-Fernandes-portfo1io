@@ -62,10 +62,15 @@
     {
       "id": "nook",
       "title": "Nook",
-      "year": "2025",
+      "year": "2026",
       "category": "Product",
       "summary": "Add a one-line summary.",
-      "tags": [],
+      "tags": [
+        "manufacturing",
+        "Fusion 360",
+        "Laser cutting",
+        "Waterjet cutting"
+      ],
       "cover": "images/1791274124484-img-9820.jpg",
       "body": "Nook was designed for unfitted kitchens, with circular economy principles built into the brief. It's a portable light meant to move within the kitchen, improving visibility in low-light corners or temporary workstation setups where fixed overhead lighting falls short.\n\nEvery concept shared a triangular prism form, since the light was designed specifically to slot into corners, where standard fixed lighting usually can't reach. When not needed for task lighting, the same form works as ambient mood lighting.\n\nRepairability was a core constraint from the start: the product disassembles by design, so damaged parts can be replaced individually, and the structure could later accept upgrades like a UV sterilisation module without redesigning the whole piece.\n\nPrototyping moved from a 1:4 scale model to a full-scale joint section in laser-cut plywood, which revealed that the LED channel was weakening the timber and that the overall scale was larger than the portability goal called for, both addressed in the final size reduction.\n\nThe final build uses Kwila timber sleeves, chosen for durability and colour despite being difficult to machine against the grain, with laser-cut acrylic diffusers and waterjet-cut aluminium end caps, assembled with M6 screws and nutserts for full disassembly.",
       "images": []
